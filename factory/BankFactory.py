@@ -1,4 +1,17 @@
-class VietcomBankAccount:
+from abc import ABC, abstractmethod
+
+
+class BankAccount(ABC):
+    @abstractmethod
+    def create_account(self, name: str) -> None:
+        pass
+
+    @abstractmethod
+    def add_amount(self, amount: int) -> int:
+        pass
+
+
+class VietcomBankAccount(BankAccount):
     __fee = 1500
 
     def __init__(self):
@@ -13,7 +26,7 @@ class VietcomBankAccount:
         return self.__current_balance
 
 
-class TechcomBankAccount:
+class TechcomBankAccount(BankAccount):
     __fee = 0
 
     def __init__(self):
@@ -28,7 +41,7 @@ class TechcomBankAccount:
         return self.__current_balance
 
 
-def bank_factory(bank="VietcomBank"):
+def bank_factory(bank="VietcomBank") -> BankAccount:
     if "VietcomBank" == bank:
         return VietcomBankAccount()
     elif "TechcomBank" == bank:
