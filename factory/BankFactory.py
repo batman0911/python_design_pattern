@@ -26,7 +26,7 @@ class VietcomBankAccount(BankAccount):
         return self.__current_balance
 
 
-class TechcomBankAccount(BankAccount):
+class TPBankAccount(BankAccount):
     __fee = 0
 
     def __init__(self):
@@ -37,19 +37,19 @@ class TechcomBankAccount(BankAccount):
 
     def add_amount(self, amount: int) -> int:
         self.__current_balance += amount - self.__fee
-        print(f"add {amount} to TechcomBank account, fee: {self.__fee}")
+        print(f"add {amount} to TPBank account, fee: {self.__fee}")
         return self.__current_balance
 
 
 def bank_factory(bank="VietcomBank") -> BankAccount:
     if "VietcomBank" == bank:
         return VietcomBankAccount()
-    elif "TechcomBank" == bank:
-        return TechcomBankAccount()
+    elif "TPBank" == bank:
+        return TPBankAccount()
     else:
         raise Exception("No instance of bank found")
 
 
 if __name__ == "__main__":
-    bank_account = bank_factory("TechcomBank")
+    bank_account = bank_factory("TPBank")
     bank_account.add_amount(10000)
